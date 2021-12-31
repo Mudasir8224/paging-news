@@ -13,7 +13,6 @@ class ListFooterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val progress_bar: ProgressBar = view.findViewById(R.id.progress_bar)
     val txt_error: TextView = view.findViewById(R.id.txt_error)
 
-
     fun bind(status: State?) {
         progress_bar.visibility = if (status == State.LOADING) View.VISIBLE else View.INVISIBLE
         txt_error.visibility = if (status == State.ERROR) View.VISIBLE else View.INVISIBLE
@@ -23,7 +22,7 @@ class ListFooterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun create(retry: () -> Unit, parent: ViewGroup): ListFooterViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_list_footer, parent, false)
-            txt_error.setOnClickListener { retry() }
+            view.setOnClickListener { retry() }
             return ListFooterViewHolder(view)
         }
     }
